@@ -236,5 +236,14 @@ set speed=%speed:~0,-7%.%speeddec:~0,2%MB
 )
 goto :eof
 
+:performfast
+for /f "tokens=*" %%i in ('tools\curl --silent https://fast.com') do (
+call :instr "script src" "%%~i"
+if !retval! equ 0 set scriptsrc=%%~i
+)
+set scriptsrc=%scriptsrc:~13,14%
+echo %scriptsrc%
+pause
+
 :placeholder
 goto :eof
